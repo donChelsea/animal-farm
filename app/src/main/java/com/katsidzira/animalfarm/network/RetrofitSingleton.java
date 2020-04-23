@@ -7,17 +7,17 @@ public class RetrofitSingleton {
 
     public static final String BASE_URL = "https://gist.githubusercontent.com/";
 
-    private static Retrofit instance;
+    private static Retrofit retrofit;
 
     private RetrofitSingleton() {}
 
-    public static Retrofit getInstance() {
-        if (instance == null) {
-            instance = new Retrofit.Builder()
+    public static AnimalService getAnimalApiService() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return instance;
+        return retrofit.create(AnimalService.class);
     }
 }

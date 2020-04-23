@@ -21,18 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Retrofit retrofit = RetrofitSingleton.getInstance();
-        AnimalService animalService = retrofit.create(AnimalService.class);
-        animalService.getAllAnimals().enqueue(new Callback<AnimalList>() {
-            @Override
-            public void onResponse(Call<AnimalList> call, Response<AnimalList> response) {
-                Log.d("main", "animal: " + response.body().getAnimalList().get(0).getFact());
-            }
 
-            @Override
-            public void onFailure(Call<AnimalList> call, Throwable t) {
-                Log.d("main", "failed: " + t.getMessage());
-            }
-        });
     }
 }

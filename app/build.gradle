@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
+        buildConfigField "String", "BASE_URL", '"https://gist.githubusercontent.com/"'
         applicationId "com.katsidzira.animalfarm"
         minSdkVersion 21
         targetSdkVersion 28
