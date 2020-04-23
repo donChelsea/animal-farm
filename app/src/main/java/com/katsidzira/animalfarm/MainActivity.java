@@ -1,20 +1,20 @@
 package com.katsidzira.animalfarm;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.katsidzira.animalfarm.model.AnimalList;
-import com.katsidzira.animalfarm.network.AnimalService;
-import com.katsidzira.animalfarm.network.RetrofitSingleton;
+import com.katsidzira.animalfarm.screens.game.GameViewModel;
+import com.katsidzira.animalfarm.model.Animal;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private GameViewModel gameViewModel;
+    List<Animal> animals;
+    List<Animal> randomAnimals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +22,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        gameViewModel.getAnimalLiveData().observe(this, new Observer() {
+            @Override
+            public void onChanged(Object o) {
+                animals = (List<Animal>) o;
+                randomAnimals = gameViewModel.getRandomAnimals(animals);
+//                Log.d("yup", randomAnimals.get(0).getName());
+            }
+        });
+
     }
+
+
 }

@@ -3,6 +3,8 @@ package com.katsidzira.animalfarm.repository;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.katsidzira.animalfarm.model.Animal;
@@ -20,7 +22,7 @@ import retrofit2.Response;
 public class AnimalRepository {
 
     public static final String TAG = "repository";
-    private List<Animal> animalList = new ArrayList<>();
+    List<Animal> animalList = new ArrayList<>();
     private MutableLiveData<List<Animal>> mutableLiveData = new MutableLiveData<>();
     private Application application;
 
@@ -33,7 +35,7 @@ public class AnimalRepository {
      * @return mutableLiveData
      */
 
-    public MutableLiveData getMutalableLiveData() {
+    public MutableLiveData<List<Animal>> getLiveData() {
         AnimalService animalApiService = RetrofitSingleton.getAnimalApiService();
         animalApiService.getAllAnimals().enqueue(new Callback<AnimalList>() {
             @Override
@@ -53,5 +55,9 @@ public class AnimalRepository {
         });
 
         return mutableLiveData;
+    }
+
+    public List<Animal> getAnimalList() {
+        return mutableLiveData.getValue();
     }
 }
