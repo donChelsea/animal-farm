@@ -1,7 +1,6 @@
 package com.katsidzira.animalfarm.screens.game;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,23 +11,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.katsidzira.animalfarm.R;
 import com.katsidzira.animalfarm.databinding.FragmentGameBinding;
 import com.katsidzira.animalfarm.model.Animal;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -42,6 +35,7 @@ public class GameFragment extends Fragment {
     ImageView imageView;
     Random random = new Random();
     ImageView[] imageViews;
+    int correctPicks;
 
 
     public GameFragment() {}
@@ -63,6 +57,13 @@ public class GameFragment extends Fragment {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
 
+        gameViewModel.currentTime.observe(getViewLifecycleOwner(), new Observer<Long>() {
+            @Override
+            public void onChanged(Long aLong) {
+                binding.timerText.setText(aLong.toString());
+            }
+        });
+
         gameViewModel.getAnimalLiveData().observe(getViewLifecycleOwner(), new Observer<List<Animal>>() {
             @Override
             public void onChanged(List<Animal> animals) {
@@ -71,6 +72,16 @@ public class GameFragment extends Fragment {
 
             }
         });
+
+        gameViewModel.eventGameFinished.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    Navigation.findNavController(getView()).navigate(R.id.action_gameFragment_to_gameLoseFragment);
+                }
+            }
+        });
+
     }
 
     private void loadGameImages(List<Animal> animals) {
@@ -88,14 +99,17 @@ public class GameFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         correctGuess();
-//                        Toast.makeText(getContext(), "correct!", Toast.LENGTH_SHORT).show();
+                        gameViewModel.correctPicks++;
+                        if (gameViewModel.correctPicks == 3) {
+                            gameWon();
+                        }
                     }
                 });
             } else {
                 imageViews[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        incorrectGuess();
+                        gameLost();
                     }
                 });
             }
@@ -103,12 +117,15 @@ public class GameFragment extends Fragment {
         }
     }
 
-    private void correctGuess() {
-        loadGameImages(allAnimals);
-//        Navigation.findNavController(getView()).navigate(R.id.action_gameFragment_to_gameWonFragment);
+    private void gameWon() {
+        Navigation.findNavController(getView()).navigate(R.id.action_gameFragment_to_gameWonFragment);
     }
 
-    private void incorrectGuess() {
+    private void correctGuess() {
+        loadGameImages(allAnimals);
+    }
+
+    private void gameLost() {
         Navigation.findNavController(getView()).navigate(R.id.action_gameFragment_to_gameLoseFragment);
     }
 }
