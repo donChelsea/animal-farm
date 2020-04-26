@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@+id/gameFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_factsFragment"
+            app:destination="@id/factsFragment"
+            app:popUpTo="@+id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -49,4 +53,9 @@
             app:destination="@id/gameFragment"
             app:popUpTo="@+id/titleFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/factsFragment"
+        android:name="com.katsidzira.animalfarm.screens.facts.FactsFragment"
+        android:label="fragment_facts"
+        tools:layout="@layout/fragment_facts" />
 </navigation>

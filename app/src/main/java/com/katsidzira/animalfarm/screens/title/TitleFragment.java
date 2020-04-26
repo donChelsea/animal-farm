@@ -37,6 +37,13 @@ public class TitleFragment extends Fragment {
             }
         });
 
+        binding.factsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_titleFragment_to_factsFragment);
+            }
+        });
+
         return binding.getRoot();
     }
 
