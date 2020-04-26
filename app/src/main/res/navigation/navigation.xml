@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_title" >
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            app:destination="@+id/gameFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -21,19 +21,31 @@
         tools:layout="@layout/fragment_game" >
         <action
             android:id="@+id/action_gameFragment_to_gameWonFragment"
-            app:destination="@id/gameWonFragment" />
+            app:destination="@id/gameWonFragment"
+            app:popUpTo="@+id/titleFragment" />
         <action
             android:id="@+id/action_gameFragment_to_gameLoseFragment"
-            app:destination="@id/gameLoseFragment" />
+            app:destination="@id/gameLoseFragment"
+            app:popUpTo="@+id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
         android:name="com.katsidzira.animalfarm.screens.end_game.GameWonFragment"
         android:label="fragment_game_won"
-        tools:layout="@layout/fragment_game_won" />
+        tools:layout="@layout/fragment_game_won" >
+        <action
+            android:id="@+id/action_gameWonFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@+id/titleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameLoseFragment"
         android:name="com.katsidzira.animalfarm.screens.end_game.GameLoseFragment"
         android:label="fragment_game_lose"
-        tools:layout="@layout/fragment_game_lose" />
+        tools:layout="@layout/fragment_game_lose" >
+        <action
+            android:id="@+id/action_gameLoseFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@+id/titleFragment" />
+    </fragment>
 </navigation>

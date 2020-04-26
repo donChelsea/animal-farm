@@ -1,6 +1,12 @@
 package com.katsidzira.animalfarm.model;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+
 import com.google.gson.annotations.SerializedName;
+import com.katsidzira.animalfarm.R;
 
 public class Animal {
 
@@ -38,4 +44,5 @@ public class Animal {
     public void setFact(String fact) {
         this.fact = fact;
     }
+
 }

@@ -1,10 +1,11 @@
 package com.katsidzira.animalfarm.screens.game;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.katsidzira.animalfarm.model.Animal;
 import com.katsidzira.animalfarm.repository.AnimalRepository;
@@ -16,6 +17,9 @@ import java.util.Random;
 public class GameViewModel extends AndroidViewModel {
 
     private AnimalRepository animalRepository;
+    private List<Animal> allAnimals;
+    private MutableLiveData<List<Animal>> animalMutableLiveData = new MutableLiveData<>();
+    Animal correctAnimal;
 
     public GameViewModel(@NonNull Application application) {
         super(application);
@@ -23,7 +27,7 @@ public class GameViewModel extends AndroidViewModel {
         animalRepository = new AnimalRepository(application);
     }
 
-    public LiveData getAnimalLiveData() {
+    public MutableLiveData<List<Animal>> getAnimalLiveData() {
         return animalRepository.getLiveData();
     }
 
@@ -42,5 +46,4 @@ public class GameViewModel extends AndroidViewModel {
         }
         return newList;
     }
-
 }

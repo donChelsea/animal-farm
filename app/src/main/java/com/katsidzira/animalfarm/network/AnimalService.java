@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface AnimalService {
 
-    @GET("/donChelsea/aa939ae3397043df1e1b17499ec0c238/raw/291e66ec1d91e27f673bdfcd70ec44b8ce2c3f20/animals.json")
+    @GET("/donChelsea/6619c69def9a1933ed4665c28dbf8452/raw/21557f6ece03b79fbf4ffba2f54e95f3e37cb563/animals2.json")
     public Call<AnimalList> getAllAnimals();
 }

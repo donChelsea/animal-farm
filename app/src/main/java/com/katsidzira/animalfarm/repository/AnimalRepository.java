@@ -1,18 +1,21 @@
 package com.katsidzira.animalfarm.repository;
 
 import android.app.Application;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.katsidzira.animalfarm.R;
 import com.katsidzira.animalfarm.model.Animal;
 import com.katsidzira.animalfarm.model.AnimalList;
 import com.katsidzira.animalfarm.network.AnimalService;
 import com.katsidzira.animalfarm.network.RetrofitSingleton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +28,8 @@ public class AnimalRepository {
     List<Animal> animalList = new ArrayList<>();
     private MutableLiveData<List<Animal>> mutableLiveData = new MutableLiveData<>();
     private Application application;
+    private MutableLiveData<List<Integer>> _animalIcons = new MutableLiveData<>();
+    List<Integer> animalIcons;
 
     public AnimalRepository(Application application) {
         this.application = application;
@@ -32,6 +37,7 @@ public class AnimalRepository {
 
     /**
      * exposes the mutalable live data retrieved from api call
+     *
      * @return mutableLiveData
      */
 
@@ -40,7 +46,6 @@ public class AnimalRepository {
         animalApiService.getAllAnimals().enqueue(new Callback<AnimalList>() {
             @Override
             public void onResponse(Call<AnimalList> call, Response<AnimalList> response) {
-//                Log.d("main", "animal: " + response.body().getAnimalList().get(0).getFact());
                 if (response.body() != null) {
                     animalList = response.body().getAnimalList();
                     mutableLiveData.setValue(animalList);
@@ -49,15 +54,10 @@ public class AnimalRepository {
 
             @Override
             public void onFailure(Call<AnimalList> call, Throwable t) {
-//                Log.d("main", "failed: " + t.getMessage());
                 Log.d(TAG, "failed: " + t.getMessage());
             }
         });
 
         return mutableLiveData;
-    }
-
-    public List<Animal> getAnimalList() {
-        return mutableLiveData.getValue();
     }
 }
