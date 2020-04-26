@@ -33,7 +33,7 @@ public class GameViewModel extends AndroidViewModel {
     MutableLiveData<Boolean> eventGameFinished = new MutableLiveData<>();
     private static final Long DONE = 0L;
     private static final Long ONE_SECOND = 1000L;
-    private static final Long COUNTDOWN_TIME = 5000L;
+    private static final Long COUNTDOWN_TIME = 6000L;
     Random rand = new Random();
     int correctPicks = 0;
 

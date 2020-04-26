@@ -4,10 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.end_game.GameLoseFragment">
+        tools:context=".screens.end_game.GameLoseFragment"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
 
         <ImageView
@@ -24,31 +26,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24sp"
             android:gravity="center_horizontal"
-            android:text="@string/bummer"
+            android:text="@string/aw_man"
             android:textSize="30sp"
             app:layout_constraintTop_toBottomOf="@id/game_won_image" />
 
-        <TextView
-            android:id="@+id/lose_score_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24sp"
-            android:gravity="center_horizontal"
-            android:text="@string/score"
-            android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@id/bummer_text" />
-
         <Button
-            android:id="@+id/play_again_button"
+            android:id="@+id/try_again_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:gravity="center_horizontal"
-            android:text="@string/try_again"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lose_score_text" />
+            android:layout_gravity="center_horizontal"
+            android:text="@string/try_again" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>
