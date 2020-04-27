@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -87,6 +88,9 @@ public class GameFragment extends Fragment {
     private void loadGameImages(List<Animal> animals) {
         List<Animal> animalsList = gameViewModel.getRandomAnimals(animals);
         int randomIndex = random.nextInt(animalsList.size());
+
+        ConstraintLayout cl = getView().findViewById(R.id.layout_Color);
+        cl.setBackgroundColor(gameViewModel.getRandomColor());
 
         Animal winner = animalsList.get(randomIndex);
         binding.animalNameText.setText(winner.getName());

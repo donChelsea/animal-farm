@@ -19,6 +19,16 @@ public class Animal {
     @SerializedName("fact")
     private String fact;
 
+    private Boolean isFavorited;
+
+    public Boolean getFavorited() {
+        return isFavorited;
+    }
+
+    public void setFavorited(Boolean favorited) {
+        isFavorited = favorited;
+    }
+
     public Animal() {}
 
     public String getName() {

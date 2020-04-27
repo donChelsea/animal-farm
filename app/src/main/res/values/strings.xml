@@ -17,4 +17,6 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="fun_animal_facts">Fun Animal Facts</string>
+    <string name="fun_fact_here">Fun fact here</string>
+    <string name="play_again">Play again?</string>
 </resources>

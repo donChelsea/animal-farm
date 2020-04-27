@@ -1,6 +1,9 @@
 package com.katsidzira.animalfarm.screens.game;
 
+import android.accessibilityservice.FingerprintGestureController;
 import android.app.Application;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -11,12 +14,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
+import com.katsidzira.animalfarm.R;
 import com.katsidzira.animalfarm.model.Animal;
 import com.katsidzira.animalfarm.repository.AnimalRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -76,6 +81,19 @@ public class GameViewModel extends AndroidViewModel {
             animals.remove(randomIndex);
         }
         return newList;
+    }
+
+    public Integer getRandomColor() {
+
+        TypedArray ta = getApplication().getResources().obtainTypedArray(R.array.rainbow);
+        int[] rainbow = new int[ta.length()];
+        for (int i = 0; i < ta.length(); i++) {
+            rainbow[i] = ta.getColor(i, 0);
+        }
+        ta.recycle();
+
+        int randomIndex = rand.nextInt(rainbow.length);
+        return rainbow[randomIndex];
     }
 
     @Override

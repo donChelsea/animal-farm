@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.end_game.GameLoseFragment"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/red">
+
+
+        <ImageView
+            android:id="@+id/game_won_image"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="30sp"
+            android:src="@drawable/gameloseicon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bummer_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24sp"
+            android:gravity="center_horizontal"
+            android:text="@string/aw_man"
+            android:textSize="60sp"
+            android:fontFamily="@font/kids_zone"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/game_won_image" />
+
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/try_again"
+            android:background="@drawable/rectangle_yellow"/>
+
+    </LinearLayout>
+
+</layout>

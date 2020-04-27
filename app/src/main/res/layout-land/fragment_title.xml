@@ -8,16 +8,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.title.TitleFragment">
+        tools:context=".screens.title.TitleFragment"
+        android:background="@drawable/cartoonfarm"
+        android:fitsSystemWindows="true">
 
         <TextView
             android:id="@+id/game_title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:gravity="center_horizontal"
             android:text="@string/animal_farm"
-            android:textSize="30sp"
+            android:textSize="100sp"
             android:fontFamily="@font/kids_zone"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,20 +26,22 @@
             android:id="@+id/play_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/play"
+            android:background="@drawable/rectangle_yellow"
             app:layout_constraintBottom_toTopOf="@id/facts_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/facts_button"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/fun_animal_facts"
+            android:background="@drawable/rectangle_red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -1,8 +1,10 @@
 package com.katsidzira.animalfarm.controller;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +45,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     class AnimalViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, factText;
         ImageView animalImage;
+        ImageView likeButton;
 
         public AnimalViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,12 +53,20 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             nameText = itemView.findViewById(R.id.rec_animal_name_text);
             factText = itemView.findViewById(R.id.fun_fact_text);
             animalImage = itemView.findViewById(R.id.imageView);
+            likeButton = itemView.findViewById(R.id.like_button);
         }
 
         public void onBind(Animal animal) {
             nameText.setText(animal.getName());
             factText.setText(animal.getFact());
             Picasso.get().load(animal.getImage()).into(animalImage);
+            likeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.setBackgroundResource(R.drawable.heart_red);
+                }
+            });
+
         }
     }
 }
