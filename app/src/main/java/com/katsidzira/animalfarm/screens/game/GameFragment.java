@@ -31,12 +31,9 @@ import java.util.Random;
 public class GameFragment extends Fragment {
     private GameViewModel gameViewModel;
     private List<Animal> allAnimals;
-    private List<Animal> randomAnimals;
     FragmentGameBinding binding;
-    ImageView imageView;
     Random random = new Random();
     ImageView[] imageViews;
-    int correctPicks;
 
 
     public GameFragment() {}

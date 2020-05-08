@@ -1,12 +1,10 @@
 package com.katsidzira.animalfarm.model;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-
 import com.google.gson.annotations.SerializedName;
-import com.katsidzira.animalfarm.R;
+
+/**
+ * class that represents the each animal object from the json response
+ */
 
 public class Animal {
 
@@ -18,16 +16,6 @@ public class Animal {
 
     @SerializedName("fact")
     private String fact;
-
-    private Boolean isFavorited;
-
-    public Boolean getFavorited() {
-        return isFavorited;
-    }
-
-    public void setFavorited(Boolean favorited) {
-        isFavorited = favorited;
-    }
 
     public Animal() {}
 

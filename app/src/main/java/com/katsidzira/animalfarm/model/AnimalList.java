@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * is the model for the response from the network call
+ */
+
 public class AnimalList {
 
     @SerializedName("animals")

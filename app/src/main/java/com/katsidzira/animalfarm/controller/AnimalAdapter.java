@@ -1,10 +1,8 @@
 package com.katsidzira.animalfarm.controller;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +14,10 @@ import com.katsidzira.animalfarm.model.Animal;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+/**
+ * Adapter class: inflates the layout, provides the data that will bind to the views in the recycler view
+ */
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
     private List<Animal> animalList;
@@ -41,6 +43,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     public int getItemCount() {
         return animalList.size();
     }
+
+    /**
+     * ViewHolder class: describes how each view in the recycler view will look and behave
+     */
 
     class AnimalViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, factText;

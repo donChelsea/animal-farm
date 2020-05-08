@@ -22,24 +22,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * exposes the mutalable live data retrieved from api call
+ *
+ * @return mutableLiveData
+ */
+
 public class AnimalRepository {
 
-    public static final String TAG = "repository";
+    Application application;
     List<Animal> animalList = new ArrayList<>();
     private MutableLiveData<List<Animal>> mutableLiveData = new MutableLiveData<>();
-    private Application application;
-    private MutableLiveData<List<Integer>> _animalIcons = new MutableLiveData<>();
-    List<Integer> animalIcons;
 
     public AnimalRepository(Application application) {
         this.application = application;
     }
-
-    /**
-     * exposes the mutalable live data retrieved from api call
-     *
-     * @return mutableLiveData
-     */
 
     public MutableLiveData<List<Animal>> getLiveData() {
         AnimalService animalApiService = RetrofitSingleton.getAnimalApiService();
@@ -54,7 +51,7 @@ public class AnimalRepository {
 
             @Override
             public void onFailure(Call<AnimalList> call, Throwable t) {
-                Log.d(TAG, "failed: " + t.getMessage());
+                Log.d("repository", "failed: " + t.getMessage());
             }
         });
 

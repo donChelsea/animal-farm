@@ -3,6 +3,10 @@ package com.katsidzira.animalfarm.network;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * retrofit class to be able to map the request into java objects
+ */
+
 public class RetrofitSingleton {
 
     public static final String BASE_URL = "https://gist.githubusercontent.com";
