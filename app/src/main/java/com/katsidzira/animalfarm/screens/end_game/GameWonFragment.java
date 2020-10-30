@@ -17,30 +17,23 @@ import com.katsidzira.animalfarm.R;
 import com.katsidzira.animalfarm.databinding.FragmentGameWonBinding;
 
 public class GameWonFragment extends Fragment {
-    FragmentGameWonBinding binding;
-
-    public GameWonFragment() {
-    }
-
+    private FragmentGameWonBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_won, container, false);
-
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        binding.playAgainButton.setOnClickListener(v ->
+                Navigation.findNavController(getView()).navigate(R.id.action_gameWonFragment_to_gameFragment)
+        );
 
-        binding.playAgainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_gameWonFragment_to_gameFragment);
-            }
-        });
-
+        binding.winHomeButton.setOnClickListener(v ->
+                Navigation.findNavController(getView()).navigate(R.id.action_gameWonFragment_to_titleFragment)
+        );
     }
 }

@@ -17,27 +17,23 @@ import com.katsidzira.animalfarm.R;
 import com.katsidzira.animalfarm.databinding.FragmentGameLoseBinding;
 
 public class GameLoseFragment extends Fragment {
-    FragmentGameLoseBinding binding;
-
-
-    public GameLoseFragment() {
-    }
+    private FragmentGameLoseBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_lose, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        binding.tryAgainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_gameLoseFragment_to_gameFragment);
-            }
-        });
+        binding.tryAgainButton.setOnClickListener(v ->
+                Navigation.findNavController(getView()).navigate(R.id.action_gameLoseFragment_to_gameFragment)
+        );
+
+        binding.loseHomeButton.setOnClickListener(v ->
+                Navigation.findNavController(getView()).navigate(R.id.action_gameLoseFragment_to_titleFragment)
+        );
     }
 }

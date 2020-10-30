@@ -16,10 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         Navigation.findNavController(this, R.id.nav_host_fragment);
-
     }
-
-
-
 
 }

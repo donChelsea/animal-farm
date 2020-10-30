@@ -7,10 +7,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.end_game.GameWonFragment"
-        android:orientation="vertical"
+        android:background="@color/green"
         android:gravity="center_vertical"
-        android:background="@color/green">
+        android:orientation="vertical"
+        tools:context=".screens.end_game.GameWonFragment">
 
 
         <ImageView
@@ -24,20 +24,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24sp"
-            android:gravity="center_horizontal"
-            android:text="Winner!"
-            android:textSize="60sp"
             android:fontFamily="@font/kids_zone"
-            android:textColor="@android:color/white"/>
+            android:gravity="center_horizontal"
+            android:text="@string/winner"
+            android:textColor="@android:color/white"
+            android:textSize="60sp" />
 
-        <Button
-            android:id="@+id/play_again_button"
-            android:layout_width="150dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/play_again"
-            android:background="@drawable/rectangle_yellow"/>
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/play_again_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/rectangle_yellow"
+                android:text="@string/play_again" />
+
+            <Button
+                android:id="@+id/win_home_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/rectangle_yellow"
+                android:text="@string/home" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

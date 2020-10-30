@@ -46,6 +46,9 @@
             app:destination="@+id/gameFragment"
             app:popUpTo="@+id/titleFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_gameWonFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameLoseFragment"
@@ -56,6 +59,9 @@
             android:id="@+id/action_gameLoseFragment_to_gameFragment"
             app:destination="@id/gameFragment"
             app:popUpTo="@+id/titleFragment" />
+        <action
+            android:id="@+id/action_gameLoseFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/factsFragment"

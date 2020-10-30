@@ -31,13 +31,9 @@ import java.util.Random;
 public class GameFragment extends Fragment {
     private GameViewModel gameViewModel;
     private List<Animal> allAnimals;
-    FragmentGameBinding binding;
-    Random random = new Random();
-    ImageView[] imageViews;
-
-
-    public GameFragment() {}
-
+    private FragmentGameBinding binding;
+    private Random random = new Random();
+    private ImageView[] imageViews;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,28 +51,17 @@ public class GameFragment extends Fragment {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
 
-        gameViewModel.currentTime.observe(getViewLifecycleOwner(), new Observer<Long>() {
-            @Override
-            public void onChanged(Long aLong) {
-                binding.timerText.setText(aLong.toString());
-            }
+        gameViewModel.currentTime.observe(getViewLifecycleOwner(), aLong -> binding.timerText.setText(aLong.toString()));
+
+        gameViewModel.getAnimalLiveData().observe(getViewLifecycleOwner(), animals -> {
+            allAnimals = animals;
+            loadGameImages(allAnimals);
+
         });
 
-        gameViewModel.getAnimalLiveData().observe(getViewLifecycleOwner(), new Observer<List<Animal>>() {
-            @Override
-            public void onChanged(List<Animal> animals) {
-                allAnimals = animals;
-                loadGameImages(allAnimals);
-
-            }
-        });
-
-        gameViewModel.eventGameFinished.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    Navigation.findNavController(getView()).navigate(R.id.action_gameFragment_to_gameLoseFragment);
-                }
+        gameViewModel.eventGameFinished.observe(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean) {
+                Navigation.findNavController(getView()).navigate(R.id.action_gameFragment_to_gameLoseFragment);
             }
         });
 
@@ -96,23 +81,15 @@ public class GameFragment extends Fragment {
         for (int i = 0; i < imageViews.length; i++) {
             Picasso.get().load(animalsList.get(i).getImage()).into(imageViews[i]);
             if (animalsList.get(i) == winner) {
-                imageViews[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        correctGuess();
-                        gameViewModel.correctPicks++;
-                        if (gameViewModel.correctPicks == 3) {
-                            gameWon();
-                        }
+                imageViews[i].setOnClickListener(v -> {
+                    correctGuess();
+                    gameViewModel.correctPicks++;
+                    if (gameViewModel.correctPicks == 3) {
+                        gameWon();
                     }
                 });
             } else {
-                imageViews[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        gameLost();
-                    }
-                });
+                imageViews[i].setOnClickListener(v -> gameLost());
             }
 
         }

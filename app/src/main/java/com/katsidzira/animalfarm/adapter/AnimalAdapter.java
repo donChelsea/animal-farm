@@ -1,4 +1,4 @@
-package com.katsidzira.animalfarm.controller;
+package com.katsidzira.animalfarm.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,12 +66,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             nameText.setText(animal.getName());
             factText.setText(animal.getFact());
             Picasso.get().load(animal.getImage()).into(animalImage);
-            likeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setBackgroundResource(R.drawable.heart_red);
-                }
-            });
+            likeButton.setOnClickListener(v -> v.setBackgroundResource(R.drawable.heart_red));
 
         }
     }

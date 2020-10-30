@@ -33,7 +33,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_gravity="center_horizontal"
-            android:text="Play again?" />
+            android:text="@string/play_again" />
+
+        <Button
+            android:id="@+id/win_home_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/home" />
 
     </LinearLayout>
 

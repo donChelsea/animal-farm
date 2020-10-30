@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class AnimalRepository {
 
     Application application;
-    List<Animal> animalList = new ArrayList<>();
+
     private MutableLiveData<List<Animal>> mutableLiveData = new MutableLiveData<>();
 
     public AnimalRepository(Application application) {
@@ -44,7 +44,7 @@ public class AnimalRepository {
             @Override
             public void onResponse(Call<AnimalList> call, Response<AnimalList> response) {
                 if (response.body() != null) {
-                    animalList = response.body().getAnimalList();
+                    List<Animal> animalList = response.body().getAnimalList();
                     mutableLiveData.setValue(animalList);
                 }
             }

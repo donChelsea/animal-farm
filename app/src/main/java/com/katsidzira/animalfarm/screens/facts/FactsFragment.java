@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -18,8 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.katsidzira.animalfarm.R;
-import com.katsidzira.animalfarm.controller.AnimalAdapter;
-import com.katsidzira.animalfarm.databinding.AnimalListViewBinding;
+import com.katsidzira.animalfarm.adapter.AnimalAdapter;
 import com.katsidzira.animalfarm.databinding.FragmentFactsBinding;
 import com.katsidzira.animalfarm.model.Animal;
 
@@ -29,10 +27,6 @@ public class FactsFragment extends Fragment {
     private FragmentFactsBinding binding;
     RecyclerView recyclerView;
     FactsViewModel factsViewModel;
-
-    public FactsFragment() {
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,17 +39,13 @@ public class FactsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recyclerView = binding.recyclerView;
 
         factsViewModel = ViewModelProviders.of(this).get(FactsViewModel.class);
 
-        factsViewModel.getLiveData().observe(getViewLifecycleOwner(), new Observer<List<Animal>>() {
-            @Override
-            public void onChanged(List<Animal> animals) {
-                recyclerView.setAdapter(new AnimalAdapter(animals));
-                recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-            }
+        factsViewModel.getLiveData().observe(getViewLifecycleOwner(), animals -> {
+            recyclerView.setAdapter(new AnimalAdapter(animals));
+            recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         });
     }
 }

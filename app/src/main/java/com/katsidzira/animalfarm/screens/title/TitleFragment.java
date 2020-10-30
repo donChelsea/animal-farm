@@ -16,10 +16,6 @@ import com.katsidzira.animalfarm.databinding.FragmentTitleBinding;
 
 public class TitleFragment extends Fragment {
 
-
-    public TitleFragment() { }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,19 +23,13 @@ public class TitleFragment extends Fragment {
         FragmentTitleBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(container.getContext()), R.layout.fragment_title, container, false);
 
-        binding.playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_titleFragment_to_gameFragment);
-            }
-        });
+        binding.playButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_titleFragment_to_gameFragment)
+        );
 
-        binding.factsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_titleFragment_to_factsFragment);
-            }
-        });
+        binding.factsButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_titleFragment_to_factsFragment)
+        );
 
         return binding.getRoot();
     }
